@@ -35,7 +35,7 @@ while True:
         if not writeimg:
             img = cv2.imread('background/5.jpg')
             writeimg = cv2.imwrite(
-                'backend node/public/image/background.jpg', img)
+                'backend_node/public/image/background.jpg', img)
 
     elif state == 2:
         startX = int(r.get('x'))
@@ -63,7 +63,7 @@ while True:
         if np.average(diffsum) >= threshold:
             if readstatus == 0:
                 readstatus = 1
-                # mycol.insert_one({'time': datetime.datetime.utcnow()})
+                mycol.insert_one({'time': datetime.datetime.utcnow()})
                 print(datetime.datetime.now())
             img = cv2.rectangle(frame, (startX, startY),
                                 (endX, endY), (255, 0, 0), 2)
@@ -73,7 +73,7 @@ while True:
                                 (endX, endY), (0, 0, 255), 2)
 
         count = count + 1
-        cv2.imwrite('backend node/public/image/img'+str(count)+'.jpg', img)
+        cv2.imwrite('backend_node/public/image/img'+str(count)+'.jpg', img)
         r.set('count', count)
         if(count >= 100):
             count = 0
